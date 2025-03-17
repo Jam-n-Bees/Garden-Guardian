@@ -24,6 +24,10 @@ window/size/initial_position_type=2
 window/size/resizable=false
 window/size/borderless=true
 
+[global_group]
+
+enemy="Tag for enemy detection in punch zones."
+
 [input]
 
 punch_right={

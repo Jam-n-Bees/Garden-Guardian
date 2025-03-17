@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b3d6ddlkyydqd"]
+
+[ext_resource type="Script" uid="uid://dodtmrmujnaa" path="res://punch_zone.gd" id="1_at130"]
+
+[resource]
+script = ExtResource("1_at130")

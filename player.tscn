@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ehsw5u6niax"]
+
+[ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_i3pqv")
+
+[node name="RSDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RSDetect"]
+modulate = Color(0.477012, 0.344017, 0.326423, 1)
+position = Vector2(262.855, 0)
+scale = Vector2(21.78, 27.12)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="LSDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LSDetect"]
+modulate = Color(0.477012, 0.344017, 0.326423, 1)
+position = Vector2(-262.855, 0)
+scale = Vector2(21.78, 27.12)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -210)
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
+
+[connection signal="area_entered" from="RSDetect" to="." method="rs_punch_zone_detect"]
+[connection signal="area_entered" from="LSDetect" to="." method="ls_punch_zone_detect"]
