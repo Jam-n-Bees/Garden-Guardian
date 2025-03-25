@@ -25,10 +25,10 @@ func _process(delta: float) -> void:
 			self.position.x -= delta*base_speed*slow_down
 		if goon_approach == Incoming.LEFT:
 			self.position.x += delta*base_speed*slow_down
-	else:
-		pass
 
 func _ready() -> void:
+	await get_tree().create_timer(2).timeout
+	knockout()
 	pass
 
 func pause():
@@ -51,6 +51,8 @@ func knockout():
 		var target := Vector2(target_x, -100)
 		rotate.tween_property(self,"rotation_degrees",-3000,3)
 		nyoom.tween_property(self,"position", target, 1)
-		
+	await nyoom.finished
+	print("Dead!")
+	self.queue_free()
 	
 	
