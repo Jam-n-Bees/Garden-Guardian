@@ -19,6 +19,8 @@ var knocked_out := false
 
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 
+# NOTE
+# So long as the goon is not KO'd, it will move towards the player
 func _process(delta: float) -> void:
 	if knocked_out == false:
 		if goon_approach == Incoming.RIGHT:
@@ -27,16 +29,29 @@ func _process(delta: float) -> void:
 			self.position.x += delta*base_speed*slow_down
 
 func _ready() -> void:
-	await get_tree().create_timer(2).timeout
-	knockout()
 	pass
 
+# NOTE 
+# This function is used whenever something might hold the goons briefly
+# This may be because the player was hit, or using an item of ability
+# The function sets the "slow_down" to 0 (a multiplier in the move speeed)
+# then waits for seconds indictated by the "speed_up_delay"
+# and then tweens the property, to go back up to 1, over the timespan of 1.5 seconds
+# the timespan may be changed, and may even be influenced by level difficulty later
 func pause():
 	slow_down = 0
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(speed_up_delay).timeout
 	var accelerate = create_tween()
 	accelerate.tween_property(self,"slow_down",1,1.5)
 
+# NOTE
+# The below function should be called when the goon is defeated
+# Sets knockout to true, then creates the neccesary tweens
+# based on whether it is on the left or right side,
+# it'll go zooming off screen, position relatively proportional to the player
+# and also spin off like team rocket in the apropriate direction
+# As a little test, when the tween is over, it prints to console, "Dead!"
+# then deletes itself
 func knockout():
 	knocked_out = true
 	var rotate = create_tween()
