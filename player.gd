@@ -4,6 +4,13 @@ var attack_cooldown_stat := 3
 var attack_cooldown_time : float
 @onready var attack_on_cooldown := false
 var global_variables := load("res://resources/global_variables/global_variables.tres")
+var player_hp_bar := preload("res://ui/health_bar.tscn")
+
+func _ready() -> void:
+	var hp_bar = player_hp_bar.instantiate()
+	global_variables.player_hp_bar = hp_bar
+	add_child(hp_bar)
+	global_variables.player_node = self
 
 func _process(delta: float) -> void:
 	if attack_on_cooldown == true:
@@ -33,8 +40,11 @@ func _on_rs_detect_area_entered(area: Area2D) -> void:
 		area.ad_right_side.emit()
 
 
-
-
 func _on_ls_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.ad_left_side.emit()
+
+
+func _on_attackable_zone_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBox"):
+		area.in_range.emit()

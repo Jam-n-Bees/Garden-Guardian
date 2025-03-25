@@ -4,6 +4,7 @@ extends Node2D
 
 signal attack
 signal defeated
+signal knocked_back
 
 enum Incoming { RIGHT, LEFT }
 
@@ -16,6 +17,8 @@ var slow_down : float = 1
 var speed_up_delay : float = 1
 
 var knocked_out := false
+var interupted := false
+var attacking := false
 
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 
@@ -26,12 +29,15 @@ var global_variables := load("res://resources/global_variables/global_variables.
 func _ready() -> void:
 	goon_hit_box.ad_right_side.connect(add_right_array)
 	goon_hit_box.ad_left_side.connect(add_left_array)
+	goon_hit_box.in_range.connect(attack_player)
 	pass
 
 # NOTE
 # So long as the goon is not KO'd, it will move towards the player
 func _process(delta: float) -> void:
 	if knocked_out == false:
+		if interupted == true or attacking == true:
+			return
 		if goon_approach == Incoming.RIGHT:
 			self.position.x -= delta*base_speed*slow_down
 		if goon_approach == Incoming.LEFT:
@@ -86,3 +92,29 @@ func add_left_array():
 	global_variables.right_side.push_front(self)
 	print("Left side!")
 	pass
+
+func attack_player():
+	attacking = true
+	await get_tree().create_timer(0.2).timeout
+	if interupted == false:
+		global_variables.player_hp -= 1
+		global_variables.player_hp_bar.value = global_variables.player_hp
+	emit_signal("knocked_back")
+	attacking = false
+
+func knock_back():
+	interupted = true
+	var nyoomers = create_tween()
+	var target
+	if self.goon_approach == Incoming.RIGHT:
+		target = Vector2(self.position.x + 400, self.position.y)
+	if self.goon_approach == Incoming.LEFT:
+		target = Vector2(self.position.x - 400, self.position.y)
+	nyoomers.tween_property(self,"position", target, 1)
+	await nyoomers.finished
+	interupted = false
+	pause()
+	
+	
+	
+	
