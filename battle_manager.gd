@@ -22,10 +22,14 @@ func summon_goon():
 	summoned_goon.position.y = 750
 	if dice_roll > 0.5:
 		right_side.append(summoned_goon)
-		summoned_goon.position.x = player.position.x + 100
+		summoned_goon.position.x = player.position.x + 1000
+		summoned_goon.goon_approach = summoned_goon.Incoming.RIGHT
 	else:
 		left_side.append(summoned_goon)
-		summoned_goon.position.x = player.position.x - 100
+		summoned_goon.position.x = player.position.x - 1000
+		summoned_goon.goon_approach = summoned_goon.Incoming.LEFT
+	print(str(summoned_goon.goon_approach))
 	add_child(summoned_goon)
+	
 		
 		

@@ -12,9 +12,6 @@ func _process(delta: float) -> void:
 		else:
 			attack_cooldown_time -= (1*delta)
 
-			
-			
-			
 func _input(event: InputEvent) -> void:
 	if attack_on_cooldown == false:
 		if event.is_action_pressed("punch_right"):
