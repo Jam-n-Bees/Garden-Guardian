@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckroysfoy5ivi"]
+
+[ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="1_rpqi1"]
+[ext_resource type="Script" uid="uid://bnil1csffgmb7" path="res://battle_manager.gd" id="1_uxrcv"]
+[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="2_uxrcv"]
+[ext_resource type="PackedScene" uid="uid://cf6us2yfvqxte" path="res://goons/goon_scenes/base_goon.tscn" id="3_rf2cd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="BattleManager" type="Node2D" parent="."]
+script = ExtResource("1_uxrcv")
+
+[node name="Player" type="Node2D" parent="BattleManager"]
+position = Vector2(960, 750)
+script = ExtResource("1_rpqi1")
+
+[node name="PlayerSprite" type="Sprite2D" parent="BattleManager/Player"]
+texture = ExtResource("2_uxrcv")
+
+[node name="RSDetect" type="Area2D" parent="BattleManager/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/RSDetect"]
+modulate = Color(0.477012, 0.344017, 0.326423, 1)
+position = Vector2(262.855, 0)
+scale = Vector2(21.78, 27.12)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="LSDetect" type="Area2D" parent="BattleManager/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/LSDetect"]
+modulate = Color(0.477012, 0.344017, 0.326423, 1)
+position = Vector2(-262.855, 0)
+scale = Vector2(21.78, 27.12)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="Camera2D" type="Camera2D" parent="BattleManager/Player"]
+offset = Vector2(0, -210)
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
+
+[node name="BaseGoon" parent="." instance=ExtResource("3_rf2cd")]
+position = Vector2(-100, 750)
