@@ -55,7 +55,7 @@ func pause():
 	slow_down = 0
 	await get_tree().create_timer(speed_up_delay).timeout
 	var accelerate = create_tween()
-	accelerate.tween_property(self,"slow_down",1,1.5)
+	accelerate.tween_property(self,"slow_down",1,2)
 
 # NOTE
 # The below function should be called when the goon is defeated
@@ -104,13 +104,14 @@ func attack_player():
 
 func knock_back():
 	interupted = true
+	await get_tree().create_timer(0.5).timeout
 	var nyoomers = create_tween()
 	var target
 	if self.goon_approach == Incoming.RIGHT:
-		target = Vector2(self.position.x + 400, self.position.y)
+		target = Vector2(self.position.x + 500, self.position.y)
 	if self.goon_approach == Incoming.LEFT:
-		target = Vector2(self.position.x - 400, self.position.y)
-	nyoomers.tween_property(self,"position", target, 1)
+		target = Vector2(self.position.x - 500, self.position.y)
+	nyoomers.tween_property(self,"position", target, 0.8)
 	await nyoomers.finished
 	interupted = false
 	pause()
