@@ -24,3 +24,17 @@ func _input(event: InputEvent) -> void:
 			self.position.x -= 200
 			attack_on_cooldown = true
 			attack_cooldown_time = attack_cooldown_stat
+
+
+
+
+func _on_rs_detect_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBox"):
+		area.ad_right_side.emit()
+
+
+
+
+func _on_ls_detect_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBox"):
+		area.ad_left_side.emit()

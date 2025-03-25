@@ -44,4 +44,3 @@ editor_draw_drag_margin = true
 position = Vector2(-100, 750)
 
 [connection signal="area_entered" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_entered"]
-[connection signal="area_entered" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_entered"]

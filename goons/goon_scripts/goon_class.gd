@@ -19,6 +19,15 @@ var knocked_out := false
 
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 
+# URGENT NOTE should be replaced by instantiating the area as a child
+# this is v problematic
+@onready var goon_hit_box := $GoonArea
+
+func _ready() -> void:
+	goon_hit_box.ad_right_side.connect(add_right_array)
+	goon_hit_box.ad_left_side.connect(add_left_array)
+	pass
+
 # NOTE
 # So long as the goon is not KO'd, it will move towards the player
 func _process(delta: float) -> void:
@@ -28,8 +37,6 @@ func _process(delta: float) -> void:
 		if goon_approach == Incoming.LEFT:
 			self.position.x += delta*base_speed*slow_down
 
-func _ready() -> void:
-	pass
 
 # NOTE 
 # This function is used whenever something might hold the goons briefly
@@ -70,4 +77,12 @@ func knockout():
 	print("Dead!")
 	self.queue_free()
 	
+func add_right_array():
+	print("Right side!")
+	global_variables.right_side.push_front(self)
+	pass
 	
+func add_left_array():
+	global_variables.right_side.push_front(self)
+	print("Left side!")
+	pass

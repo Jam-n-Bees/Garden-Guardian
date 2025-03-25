@@ -24,6 +24,10 @@ window/size/initial_position_type=2
 window/size/resizable=false
 window/size/borderless=true
 
+[global_group]
+
+EnemyBox="An enemy's area box for detection."
+
 [input]
 
 punch_right={
