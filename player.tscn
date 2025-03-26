@@ -33,4 +33,6 @@ position_smoothing_enabled = true
 editor_draw_drag_margin = true
 
 [connection signal="area_entered" from="RSDetect" to="." method="rs_punch_zone_detect"]
+[connection signal="area_exited" from="RSDetect" to="." method="_on_rs_detect_area_exited"]
 [connection signal="area_entered" from="LSDetect" to="." method="ls_punch_zone_detect"]
+[connection signal="area_exited" from="LSDetect" to="." method="_on_ls_detect_area_exited"]

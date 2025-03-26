@@ -60,12 +60,13 @@ func _input(event: InputEvent) -> void:
 func _on_rs_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.ad_right_side.emit()
-		print(str(global_variables.right_side))
 
 
 func _on_ls_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.ad_left_side.emit()
+		
+		
 
 
 func _on_attackable_zone_area_entered(area: Area2D) -> void:

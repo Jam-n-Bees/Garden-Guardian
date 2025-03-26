@@ -99,6 +99,7 @@ func add_left_array():
 	print("Left side!")
 	pass
 
+	
 func attack_player():
 	attacking = true
 	await get_tree().create_timer(0.2).timeout
