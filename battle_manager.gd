@@ -22,11 +22,9 @@ func summon_goon():
 	var summoned_goon = base_goon_scene.instantiate()
 	summoned_goon.position.y = 750
 	if dice_roll > 0.5:
-		global_variables.right_side.append(summoned_goon)
 		summoned_goon.position.x = player.position.x + 1400
 		summoned_goon.goon_approach = summoned_goon.Incoming.RIGHT
 	else:
-		global_variables.left_side.append(summoned_goon)
 		summoned_goon.position.x = player.position.x - 1400
 		summoned_goon.goon_approach = summoned_goon.Incoming.LEFT
 	summoned_goon.knocked_back.connect(knock_back_goons)

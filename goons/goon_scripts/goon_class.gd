@@ -70,11 +70,13 @@ func knockout():
 	var rotate = create_tween()
 	var nyoom = create_tween()
 	if goon_approach == Incoming.RIGHT:
+		global_variables.right_side.erase(self)
 		var target_x = global_variables.player_pos_x + 1000
 		var target := Vector2(target_x, -100)
 		rotate.tween_property(self,"rotation_degrees",3000,3)
 		nyoom.tween_property(self,"position", target, 1)
 	if goon_approach == Incoming.LEFT:
+		global_variables.left_side.erase(self)
 		var target_x = global_variables.player_pos_x - 1000
 		var target := Vector2(target_x, -100)
 		rotate.tween_property(self,"rotation_degrees",-3000,3)
@@ -84,12 +86,16 @@ func knockout():
 	self.queue_free()
 	
 func add_right_array():
+	if global_variables.right_side.find(self) > -1:
+		return
 	print("Right side!")
-	global_variables.right_side.push_front(self)
+	global_variables.right_side.append(self)
 	pass
 	
 func add_left_array():
-	global_variables.right_side.push_front(self)
+	if global_variables.left_side.find(self) > -1:
+		return
+	global_variables.left_side.push_front(self)
 	print("Left side!")
 	pass
 

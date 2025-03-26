@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="1_fm8xe"]
 [ext_resource type="Script" uid="uid://djuasdtwldmg2" path="res://goons/goon_scripts/base_goon.gd" id="1_vwvtf"]
-[ext_resource type="Script" uid="uid://hu3wmufqnaq5" path="res://goons/goon_scenes/goon_area.gd" id="3_b40rc"]
+[ext_resource type="Script" uid="uid://hu3wmufqnaq5" path="res://goons/goon_scripts/goon_area.gd" id="3_b40rc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwvtf"]
 size = Vector2(127, 128)
