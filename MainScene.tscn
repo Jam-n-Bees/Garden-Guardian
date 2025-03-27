@@ -48,5 +48,7 @@ scale = Vector2(10, 28)
 shape = SubResource("RectangleShape2D_rpqi1")
 
 [connection signal="area_entered" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_entered"]
+[connection signal="area_exited" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_exited"]
 [connection signal="area_entered" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_entered"]
+[connection signal="area_exited" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_exited"]
 [connection signal="area_entered" from="BattleManager/Player/AttackableZone" to="BattleManager/Player" method="_on_attackable_zone_area_entered"]

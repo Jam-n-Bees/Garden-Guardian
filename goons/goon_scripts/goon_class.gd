@@ -31,6 +31,8 @@ func _ready() -> void:
 	goon_hit_box.ad_right_side.connect(add_right_array)
 	goon_hit_box.ad_left_side.connect(add_left_array)
 	goon_hit_box.in_range.connect(attack_player)
+	goon_hit_box.remove_right_side.connect(remove_right_array)
+	goon_hit_box.remove_left_side.connect(remove_left_array)
 	pass
 
 # NOTE
@@ -43,7 +45,6 @@ func _process(delta: float) -> void:
 			self.position.x -= delta*base_speed*slow_down
 		if goon_approach == Incoming.LEFT:
 			self.position.x += delta*base_speed*slow_down
-
 
 # NOTE 
 # This function is used whenever something might hold the goons briefly
@@ -87,14 +88,14 @@ func knockout():
 	await nyoom.finished
 	print("Dead!")
 	self.queue_free()
-	
+
 func add_right_array():
 	if global_variables.right_side.find(self) > -1:
 		return
 	print("Right side!")
 	global_variables.right_side.append(self)
 	pass
-	
+
 func add_left_array():
 	if global_variables.left_side.find(self) > -1:
 		return
@@ -102,7 +103,12 @@ func add_left_array():
 	print("Left side!")
 	pass
 
-	
+func remove_right_array():
+	global_variables.right_side.erase(self)
+
+func remove_left_array():
+	global_variables.left_side.erase(self)
+
 func attack_player():
 	attacking = true
 	await get_tree().create_timer(0.2).timeout

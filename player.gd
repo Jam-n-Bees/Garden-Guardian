@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 			attack_cooldown_time -= (1*delta)
 	global_variables.player_pos_x = self.position.x
 	global_variables.player_pos_y = self.position.y
-	
+
 func _input(event: InputEvent) -> void:
 	if attack_on_cooldown == false:
 		if event.is_action_pressed("punch_right"):
@@ -57,21 +57,24 @@ func _input(event: InputEvent) -> void:
 				attack_on_cooldown = true
 				attack_cooldown_time = attack_cooldown_stat
 
-
-
-
 func _on_rs_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.ad_right_side.emit()
 
-
 func _on_ls_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.ad_left_side.emit()
-		
-		
-
 
 func _on_attackable_zone_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.in_range.emit()
+
+
+func _on_rs_detect_area_exited(area: Area2D) -> void:
+	if area.is_in_group("EnemyBox"):
+		area.remove_right_side.emit()
+
+
+func _on_ls_detect_area_exited(area: Area2D) -> void:
+	if area.is_in_group("EnemyBox"):
+		area.remove_left_side.emit()
