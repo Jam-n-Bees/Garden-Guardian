@@ -47,6 +47,18 @@ editor_draw_drag_margin = true
 scale = Vector2(10, 28)
 shape = SubResource("RectangleShape2D_rpqi1")
 
+[node name="Sprite2D" type="Sprite2D" parent="BattleManager/Player"]
+self_modulate = Color(0.924071, 0, 0.385646, 1)
+position = Vector2(-250, 56.5)
+scale = Vector2(3.4375, 0.382813)
+texture = ExtResource("2_uxrcv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BattleManager/Player"]
+self_modulate = Color(0.924071, 0, 0.385646, 1)
+position = Vector2(250, 57)
+scale = Vector2(3.4375, 0.382813)
+texture = ExtResource("2_uxrcv")
+
 [connection signal="area_entered" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_entered"]
 [connection signal="area_exited" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_exited"]
 [connection signal="area_entered" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_entered"]
