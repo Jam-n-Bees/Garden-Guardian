@@ -29,9 +29,10 @@ func _input(event: InputEvent) -> void:
 				var current_closest_range := 100000
 				closest_target = global_variables.right_side[0]
 				for n in global_variables.right_side:
-					if n.global_position.x - self.global_position.x < current_closest_range:
-						current_closest_range = n.global_position.x - self.global_position.x
-						closest_target = n
+					if is_instance_valid(n):
+						if n.global_position.x - self.global_position.x < current_closest_range:
+							current_closest_range = n.global_position.x - self.global_position.x
+							closest_target = n
 				closest_target.knockout()
 			else:
 				self.position.x += 200
@@ -45,9 +46,10 @@ func _input(event: InputEvent) -> void:
 				var current_closest_range := 100000
 				closest_target = global_variables.left_side[0]
 				for n in global_variables.left_side:
-					if self.global_position.x - n.global_position.x < current_closest_range:
-						current_closest_range = self.global_position.x - n.global_position.x
-						closest_target = n
+					if is_instance_valid(n):
+						if self.global_position.x - n.global_position.x < current_closest_range:
+							current_closest_range = self.global_position.x - n.global_position.x
+							closest_target = n
 				closest_target.knockout()
 			else:
 				self.position.x -= 200

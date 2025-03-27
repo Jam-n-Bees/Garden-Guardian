@@ -6,6 +6,7 @@ signal attack
 signal defeated
 signal knocked_back
 
+
 enum Incoming { RIGHT, LEFT }
 
 var goon_approach = Incoming.RIGHT
@@ -71,12 +72,14 @@ func knockout():
 	var nyoom = create_tween()
 	if goon_approach == Incoming.RIGHT:
 		global_variables.right_side.erase(self)
+		global_variables.master_right_side.erase(self)
 		var target_x = global_variables.player_pos_x + 1000
 		var target := Vector2(target_x, -100)
 		rotate.tween_property(self,"rotation_degrees",3000,3)
 		nyoom.tween_property(self,"position", target, 1)
 	if goon_approach == Incoming.LEFT:
 		global_variables.left_side.erase(self)
+		global_variables.master_left_side.erase(self)
 		var target_x = global_variables.player_pos_x - 1000
 		var target := Vector2(target_x, -100)
 		rotate.tween_property(self,"rotation_degrees",-3000,3)
