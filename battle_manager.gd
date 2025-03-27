@@ -3,8 +3,11 @@ extends Node2D
 
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 var base_goon_scene = preload("res://goons/goon_scenes/base_goon.tscn")
+var lose_screen = preload("res://ui/lose_message.tscn")
 
 @onready var player = $Player
+
+
 
 #var rng = RandomNumberGenerator.new()
 
@@ -12,8 +15,16 @@ func _ready() -> void:
 	for n in range(10):
 		# await get_tree().create_timer(0.5).timeout
 		summon_goon()
-		pass
-	
+	global_variables.current_game_state = global_variables.Game_state.FIGHTING
+
+func _process(delta: float) -> void:
+	if global_variables.player_hp == 0:
+		global_variables.current_game_state = global_variables.Game_state.LOSE
+	if global_variables.current_game_state == global_variables.Game_state.LOSE:
+		var summoned_lose_screen =  lose_screen.instantiate()
+		summoned_lose_screen.position = Vector2(global_variables.player_pos_x - 395, 20)
+		add_child(summoned_lose_screen)
+
 func roll_100():
 	return(randf())
 	

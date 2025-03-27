@@ -11,7 +11,7 @@ enum Incoming { RIGHT, LEFT }
 
 var goon_approach = Incoming.RIGHT
 
-var base_speed := 300
+var base_speed := 350
 var base_threat := 1
 
 var slow_down : float = 1
@@ -20,6 +20,9 @@ var speed_up_delay : float = 1
 var knocked_out := false
 var interupted := false
 var attacking := false
+var game_over_buffer := 0
+
+
 
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 
@@ -38,6 +41,9 @@ func _ready() -> void:
 # NOTE
 # So long as the goon is not KO'd, it will move towards the player
 func _process(delta: float) -> void:
+	if global_variables.current_game_state == global_variables.Game_state.LOSE:
+		interupted = true
+		game_over_buffer = 1000
 	if knocked_out == false:
 		if interupted == true or attacking == true:
 			return
@@ -126,14 +132,15 @@ func knock_back():
 	var nyoomers = create_tween()
 	var target
 	if self.goon_approach == Incoming.RIGHT:
-		target = Vector2(self.position.x + 500, self.position.y)
+		target = Vector2(self.position.x + 500 + game_over_buffer , self.position.y)
 	if self.goon_approach == Incoming.LEFT:
-		target = Vector2(self.position.x - 500, self.position.y)
+		target = Vector2(self.position.x - 500 - game_over_buffer , self.position.y)
 	nyoomers.tween_property(self,"position", target, 0.8)
 	await nyoomers.finished
 	interupted = false
 	pause()
 	
 	
-	
+func game_lost():
+	pass
 	

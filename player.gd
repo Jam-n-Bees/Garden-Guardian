@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	print(str(global_variables.player_node.attack_on_cooldown))
 
 func _input(event: InputEvent) -> void:
-	if attack_on_cooldown == false:
+	if attack_on_cooldown == false and global_variables.current_game_state == global_variables.Game_state.FIGHTING:
 		if event.is_action_pressed("punch_right"):
 			if not global_variables.right_side.is_empty():
 				var closest_target

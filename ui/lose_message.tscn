@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://e2ry2ff1isa7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_caepw"]
+font_size = 164
+outline_size = 65
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 565.0
+offset_top = 20.0
+offset_right = 1355.0
+offset_bottom = 473.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(395, 226.5)
+size_flags_horizontal = 6
+text = "YOU LOSE
+LMAO"
+label_settings = SubResource("LabelSettings_caepw")
+horizontal_alignment = 1
+vertical_alignment = 1
