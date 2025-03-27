@@ -35,6 +35,9 @@ func _input(event: InputEvent) -> void:
 							current_closest_range = n.global_position.x - self.global_position.x
 							closest_target = n
 				if is_instance_valid(closest_target):
+					closest_target.interupted = true
+					var dash = create_tween()
+					dash.tween_property(self,"position", Vector2(closest_target.position.x - 80, closest_target.position.y), 0.1)
 					closest_target.knockout()
 			else:
 				self.position.x += 200

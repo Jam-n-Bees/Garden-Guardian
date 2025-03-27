@@ -44,7 +44,7 @@ editor_draw_drag_margin = true
 [node name="AttackableZone" type="Area2D" parent="BattleManager/Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/AttackableZone"]
-scale = Vector2(10, 28)
+scale = Vector2(8, 28)
 shape = SubResource("RectangleShape2D_rpqi1")
 
 [node name="Sprite2D" type="Sprite2D" parent="BattleManager/Player"]
