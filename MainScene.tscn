@@ -44,17 +44,17 @@ editor_draw_drag_margin = true
 [node name="AttackableZone" type="Area2D" parent="BattleManager/Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/AttackableZone"]
-scale = Vector2(8, 28)
+scale = Vector2(9, 28)
 shape = SubResource("RectangleShape2D_rpqi1")
 
 [node name="Sprite2D" type="Sprite2D" parent="BattleManager/Player"]
-self_modulate = Color(0.924071, 0, 0.385646, 1)
+self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
 position = Vector2(-250, 56.5)
 scale = Vector2(3.4375, 0.382813)
 texture = ExtResource("2_uxrcv")
 
 [node name="Sprite2D2" type="Sprite2D" parent="BattleManager/Player"]
-self_modulate = Color(0.924071, 0, 0.385646, 1)
+self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
 position = Vector2(250, 57)
 scale = Vector2(3.4375, 0.382813)
 texture = ExtResource("2_uxrcv")
