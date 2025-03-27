@@ -33,7 +33,8 @@ func _input(event: InputEvent) -> void:
 						if n.global_position.x - self.global_position.x < current_closest_range:
 							current_closest_range = n.global_position.x - self.global_position.x
 							closest_target = n
-				closest_target.knockout()
+				if is_instance_valid(closest_target):
+					closest_target.knockout()
 			else:
 				self.position.x += 200
 				attack_on_cooldown = true
