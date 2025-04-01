@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://e2ry2ff1isa7"]
+[gd_scene load_steps=2 format=3 uid="uid://dlr1g6efnycde"]
 
-[ext_resource type="LabelSettings" uid="uid://8nbpmajkixw1" path="res://ui/testfont.tres" id="1_pggsa"]
+[sub_resource type="LabelSettings" id="LabelSettings_caepw"]
+font_size = 164
+outline_size = 65
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label"]
 anchors_preset = 15
@@ -14,8 +17,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(395, 226.5)
 size_flags_horizontal = 6
-text = "YOU LOSE
-LMAO"
-label_settings = ExtResource("1_pggsa")
+text = "you won
+yay"
+label_settings = SubResource("LabelSettings_caepw")
 horizontal_alignment = 1
 vertical_alignment = 1

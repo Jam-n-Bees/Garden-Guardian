@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 		interupted = true
 		game_over_buffer = 1000
 	if knocked_out == false:
-		if interupted == true or attacking == true:
+		if interupted == true or attacking == true or global_variables.current_game_state == global_variables.Game_state.PAUSED:
 			return
 		if goon_approach == Incoming.RIGHT:
 			self.position.x -= delta*base_speed*slow_down

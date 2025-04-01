@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl1m7q4gnr75k"]
+
+[ext_resource type="Script" uid="uid://btrx0r7kr5oqr" path="res://main_scenes/main_menu.gd" id="1_01hx6"]
+[ext_resource type="LabelSettings" uid="uid://8nbpmajkixw1" path="res://ui/testfont.tres" id="1_jka60"]
+
+[node name="MainMenuScene" type="Node2D"]
+script = ExtResource("1_01hx6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 302.0
+offset_top = 177.0
+offset_right = 1667.0
+offset_bottom = 402.0
+text = "Garden Guardian"
+label_settings = ExtResource("1_jka60")
+
+[node name="ExitGame" type="Button" parent="."]
+offset_left = 786.0
+offset_top = 880.0
+offset_right = 873.0
+offset_bottom = 911.0
+scale = Vector2(5.03, 5.03)
+focus_neighbor_top = NodePath("../Stage2")
+text = "Exit Game"
+
+[node name="Stage1" type="Button" parent="."]
+offset_left = 289.0
+offset_top = 513.0
+offset_right = 376.0
+offset_bottom = 544.0
+scale = Vector2(5.03, 5.03)
+focus_neighbor_right = NodePath("../Stage2")
+text = "Stage 1"
+
+[node name="Stage2" type="Button" parent="."]
+offset_left = 785.0
+offset_top = 513.0
+offset_right = 872.0
+offset_bottom = 544.0
+scale = Vector2(5.03, 5.03)
+focus_neighbor_left = NodePath("../Stage1")
+focus_neighbor_right = NodePath("../Stage3")
+focus_neighbor_bottom = NodePath("../ExitGame")
+text = "N/A"
+
+[node name="Stage3" type="Button" parent="."]
+offset_left = 1327.0
+offset_top = 511.0
+offset_right = 1414.0
+offset_bottom = 542.0
+scale = Vector2(5.03, 5.03)
+focus_neighbor_left = NodePath("../Stage2")
+text = "N/A"
+
+[connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="Stage1" to="." method="_on_stage_1_pressed"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-var attack_cooldown_stat := 3
+var attack_cooldown_stat := 1.5
 var attack_cooldown_time : float
 @onready var attack_on_cooldown := false
 var global_variables := load("res://resources/global_variables/global_variables.tres")
@@ -66,6 +66,9 @@ func _input(event: InputEvent) -> void:
 				self.position.x -= 200
 				attack_on_cooldown = true
 				attack_cooldown_time = attack_cooldown_stat
+				
+				
+		
 
 func _on_rs_detect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):

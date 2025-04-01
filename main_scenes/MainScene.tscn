@@ -1,24 +1,27 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckroysfoy5ivi"]
 
-[ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="1_rpqi1"]
-[ext_resource type="Script" uid="uid://bnil1csffgmb7" path="res://battle_manager.gd" id="1_uxrcv"]
-[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="2_uxrcv"]
+[ext_resource type="Script" uid="uid://bnil1csffgmb7" path="res://battle_manager.gd" id="1_j8dtw"]
+[ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="2_u7urk"]
+[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="3_5s1wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqi1"]
 
 [node name="MainScene" type="Node2D"]
+process_mode = 3
 
 [node name="BattleManager" type="Node2D" parent="."]
-script = ExtResource("1_uxrcv")
+process_mode = 3
+script = ExtResource("1_j8dtw")
 
 [node name="Player" type="Node2D" parent="BattleManager"]
+process_mode = 1
 position = Vector2(960, 750)
-script = ExtResource("1_rpqi1")
+script = ExtResource("2_u7urk")
 
 [node name="PlayerSprite" type="Sprite2D" parent="BattleManager/Player"]
-texture = ExtResource("2_uxrcv")
+texture = ExtResource("3_5s1wt")
 
 [node name="RSDetect" type="Area2D" parent="BattleManager/Player"]
 
@@ -51,16 +54,38 @@ shape = SubResource("RectangleShape2D_rpqi1")
 self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
 position = Vector2(-250, 56.5)
 scale = Vector2(3.4375, 0.382813)
-texture = ExtResource("2_uxrcv")
+texture = ExtResource("3_5s1wt")
 
 [node name="Sprite2D2" type="Sprite2D" parent="BattleManager/Player"]
 self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
 position = Vector2(250, 57)
 scale = Vector2(3.4375, 0.382813)
-texture = ExtResource("2_uxrcv")
+texture = ExtResource("3_5s1wt")
+
+[node name="ColorRect" type="ColorRect" parent="BattleManager"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_left = -6688.0
+offset_top = -207.0
+offset_right = 8662.0
+offset_bottom = 1310.0
+color = Color(0.191001, 0.127136, 0.281407, 1)
+
+[node name="ExitToMenu" type="Button" parent="BattleManager"]
+top_level = true
+offset_left = 53.0
+offset_top = 216.0
+offset_right = 149.0
+offset_bottom = 270.0
+scale = Vector2(2.895, 2.895)
+pivot_offset = Vector2(48, 27)
+text = "Quit to
+Main Menu"
 
 [connection signal="area_entered" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_entered"]
 [connection signal="area_exited" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_exited"]
 [connection signal="area_entered" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_entered"]
 [connection signal="area_exited" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_exited"]
 [connection signal="area_entered" from="BattleManager/Player/AttackableZone" to="BattleManager/Player" method="_on_attackable_zone_area_entered"]
+[connection signal="pressed" from="BattleManager/ExitToMenu" to="BattleManager" method="_on_exit_to_menu_pressed"]
