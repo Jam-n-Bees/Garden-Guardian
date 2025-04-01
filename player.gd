@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 			attack_cooldown_time -= (1*delta)
 	global_variables.player_pos_x = self.position.x
 	global_variables.player_pos_y = self.position.y
-	print(str(global_variables.player_node.attack_on_cooldown))
 
 func _input(event: InputEvent) -> void:
 	if attack_on_cooldown == false and global_variables.current_game_state == global_variables.Game_state.FIGHTING:
