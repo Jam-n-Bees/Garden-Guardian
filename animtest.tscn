@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc3rxvje3m0u6"]
+
+[ext_resource type="Texture2D" uid="uid://l7k2k2vdrk4k" path="res://art_assets/idletest2.png" id="1_mn52f"]
+[ext_resource type="Texture2D" uid="uid://dsk5sqfjt7fct" path="res://art_assets/idletest.png" id="2_3fond"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bblxj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1_mn52f")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_3fond")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bblxj")
+frame_progress = 0.148776
