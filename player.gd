@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if attack_on_cooldown == true:
-		if attack_cooldown_time <= 0:
+		if attack_cooldown_time <= 0 and global_variables.current_game_state != global_variables.Game_state.LOSE:
 			attack_on_cooldown = false
 			sprite_anim.animation = "Idle"
 		else:

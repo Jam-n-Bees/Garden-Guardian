@@ -119,6 +119,7 @@ func attack_player():
 	attacking = true
 	await get_tree().create_timer(0.5).timeout
 	if interupted == false and knocked_out == false:
+		global_variables.player_node.sprite_anim.animation = "Ouch"
 		global_variables.player_node.attack_cooldown_time = 1
 		global_variables.player_node.attack_on_cooldown = true
 		global_variables.player_hp -= 1

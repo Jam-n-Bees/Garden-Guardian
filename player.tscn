@@ -16,7 +16,7 @@ script = ExtResource("1_onrkg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_hqtel")
-animation = &"Bap"
+animation = &"Ouch"
 autoplay = "Idle"
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]

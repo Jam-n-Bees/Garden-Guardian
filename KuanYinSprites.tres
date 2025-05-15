@@ -1,10 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://che1xcdhpbrb8"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://che1xcdhpbrb8"]
 
 [ext_resource type="Texture2D" uid="uid://bd4y66ae4wwi5" path="res://art_assets/bappose.png" id="1_e5x4o"]
 [ext_resource type="Texture2D" uid="uid://l7k2k2vdrk4k" path="res://art_assets/idletest2.png" id="1_uw4fv"]
 [ext_resource type="Texture2D" uid="uid://dsk5sqfjt7fct" path="res://art_assets/idletest.png" id="2_cgt2g"]
 [ext_resource type="Texture2D" uid="uid://ofdhsppew2q8" path="res://art_assets/nyoom1.png" id="3_n58qr"]
 [ext_resource type="Texture2D" uid="uid://bxlle73mlp0iy" path="res://art_assets/nyoom2.png" id="4_e5x4o"]
+[ext_resource type="Texture2D" uid="uid://b4uaw1e2w6ci4" path="res://art_assets/hurtpose.png" id="6_tbrn8"]
 
 [resource]
 animations = [{
@@ -37,4 +38,12 @@ animations = [{
 "loop": true,
 "name": &"Nyoom",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tbrn8")
+}],
+"loop": true,
+"name": &"Ouch",
+"speed": 5.0
 }]
