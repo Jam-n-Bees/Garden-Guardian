@@ -1,31 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2ehsw5u6niax"]
+[gd_scene load_steps=7 format=3 uid="uid://c2ehsw5u6niax"]
 
 [ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="SpriteFrames" uid="uid://che1xcdhpbrb8" path="res://KuanYinSprites.tres" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dsk5sqfjt7fct" path="res://art_assets/idletest.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqi1"]
+
 [node name="Player" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_hqtel")
+animation = &"Bap"
+autoplay = "Idle"
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_onrkg")
 
 [node name="RSDetect" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RSDetect"]
 modulate = Color(0.477012, 0.344017, 0.326423, 1)
-position = Vector2(262.855, 0)
-scale = Vector2(21.78, 27.12)
+position = Vector2(250, 0)
+scale = Vector2(22, 28)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="LSDetect" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LSDetect"]
 modulate = Color(0.477012, 0.344017, 0.326423, 1)
-position = Vector2(-262.855, 0)
-scale = Vector2(21.78, 27.12)
+position = Vector2(-250, 0)
+scale = Vector2(22, 28)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -33,7 +45,26 @@ offset = Vector2(0, -210)
 position_smoothing_enabled = true
 editor_draw_drag_margin = true
 
-[connection signal="area_entered" from="RSDetect" to="." method="rs_punch_zone_detect"]
+[node name="AttackableZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackableZone"]
+scale = Vector2(9, 28)
+shape = SubResource("RectangleShape2D_rpqi1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
+position = Vector2(-250, 56.5)
+scale = Vector2(3.4375, 0.382813)
+texture = ExtResource("3_i3pqv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
+position = Vector2(250, 57)
+scale = Vector2(3.4375, 0.382813)
+texture = ExtResource("3_i3pqv")
+
+[connection signal="area_entered" from="RSDetect" to="." method="_on_rs_detect_area_entered"]
 [connection signal="area_exited" from="RSDetect" to="." method="_on_rs_detect_area_exited"]
-[connection signal="area_entered" from="LSDetect" to="." method="ls_punch_zone_detect"]
+[connection signal="area_entered" from="LSDetect" to="." method="_on_ls_detect_area_entered"]
 [connection signal="area_exited" from="LSDetect" to="." method="_on_ls_detect_area_exited"]
+[connection signal="area_entered" from="AttackableZone" to="." method="_on_attackable_zone_area_entered"]

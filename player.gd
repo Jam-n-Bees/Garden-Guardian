@@ -3,6 +3,7 @@ extends Node2D
 var attack_cooldown_stat := 1.5
 var attack_cooldown_time : float
 @onready var attack_on_cooldown := false
+@onready var sprite_anim := $AnimatedSprite2D
 var global_variables := load("res://resources/global_variables/global_variables.tres")
 var player_hp_bar := preload("res://ui/health_bar.tscn")
 
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 	if attack_on_cooldown == true:
 		if attack_cooldown_time <= 0:
 			attack_on_cooldown = false
+			sprite_anim.animation = "Idle"
 		else:
 			attack_cooldown_time -= (1*delta)
 	global_variables.player_pos_x = self.position.x
@@ -36,10 +38,15 @@ func _input(event: InputEvent) -> void:
 				if is_instance_valid(closest_target):
 					closest_target.interupted = true
 					var dash = create_tween()
-					dash.tween_property(self,"position", Vector2(closest_target.position.x - 80, self.position.y), 0.1)
+					sprite_anim.flip_h = false
+					sprite_anim.animation = "Nyoom"
+					dash.tween_property(self,"position", Vector2(closest_target.position.x - 80, self.position.y), 0.15)
 					await dash.finished
 					closest_target.knockout()
+					bap_animation()
 			else:
+				sprite_anim.flip_h = false
+				sprite_anim.animation = "Bap"
 				self.position.x += 200
 				attack_on_cooldown = true
 				attack_cooldown_time = attack_cooldown_stat
@@ -58,10 +65,15 @@ func _input(event: InputEvent) -> void:
 				if is_instance_valid(closest_target):
 					closest_target.interupted = true
 					var dash = create_tween()
-					dash.tween_property(self,"position", Vector2(closest_target.position.x + 80, self.position.y), 0.1)
+					sprite_anim.flip_h = true
+					sprite_anim.animation = "Nyoom"
+					dash.tween_property(self,"position", Vector2(closest_target.position.x + 80, self.position.y), 0.15)
 					await dash.finished
-				closest_target.knockout()
+					closest_target.knockout()
+					bap_animation()
 			else:
+				sprite_anim.flip_h = true
+				sprite_anim.animation = "Bap"
 				self.position.x -= 200
 				attack_on_cooldown = true
 				attack_cooldown_time = attack_cooldown_stat
@@ -90,3 +102,9 @@ func _on_rs_detect_area_exited(area: Area2D) -> void:
 func _on_ls_detect_area_exited(area: Area2D) -> void:
 	if area.is_in_group("EnemyBox"):
 		area.remove_left_side.emit()
+		
+func bap_animation():
+	sprite_anim.animation = "Bap"
+	await get_tree().create_timer(0.2).timeout
+	if sprite_anim.animation == "Bap":
+		sprite_anim.animation = "Idle"

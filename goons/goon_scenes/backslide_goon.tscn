@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2yupln53lgqm"]
+
+[ext_resource type="Script" uid="uid://djuasdtwldmg2" path="res://goons/goon_scripts/base_goon.gd" id="1_drjy7"]
+[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="2_pmy2c"]
+[ext_resource type="Script" uid="uid://hu3wmufqnaq5" path="res://goons/goon_scripts/goon_area.gd" id="3_rb8ji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwvtf"]
+size = Vector2(127, 128)
+
+[node name="BackslideGoon" type="Node2D"]
+script = ExtResource("1_drjy7")
+
+[node name="GoonSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0682309, 0.478662, 1)
+texture = ExtResource("2_pmy2c")
+
+[node name="GoonArea" type="Area2D" parent="." groups=["EnemyBox"]]
+script = ExtResource("3_rb8ji")
+
+[node name="GoonHitbox" type="CollisionShape2D" parent="GoonArea"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_vwvtf")

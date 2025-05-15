@@ -1,13 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckroysfoy5ivi"]
+[gd_scene load_steps=3 format=3 uid="uid://ckroysfoy5ivi"]
 
 [ext_resource type="Script" uid="uid://bnil1csffgmb7" path="res://battle_manager.gd" id="1_j8dtw"]
-[ext_resource type="Script" uid="uid://bl0u0txjibooi" path="res://player.gd" id="2_u7urk"]
-[ext_resource type="Texture2D" uid="uid://clak5m0dogx38" path="res://icon.svg" id="3_5s1wt"]
-[ext_resource type="Texture2D" uid="uid://dsk5sqfjt7fct" path="res://art_assets/idletest.png" id="3_u7urk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqi1"]
+[ext_resource type="PackedScene" uid="uid://c2ehsw5u6niax" path="res://player.tscn" id="2_6tdjw"]
 
 [node name="MainScene" type="Node2D"]
 process_mode = 3
@@ -16,53 +10,8 @@ process_mode = 3
 process_mode = 3
 script = ExtResource("1_j8dtw")
 
-[node name="Player" type="Node2D" parent="BattleManager"]
-process_mode = 1
+[node name="Player" parent="BattleManager" instance=ExtResource("2_6tdjw")]
 position = Vector2(960, 750)
-script = ExtResource("2_u7urk")
-
-[node name="PlayerSprite" type="Sprite2D" parent="BattleManager/Player"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_u7urk")
-
-[node name="RSDetect" type="Area2D" parent="BattleManager/Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/RSDetect"]
-modulate = Color(0.477012, 0.344017, 0.326423, 1)
-position = Vector2(250, 0)
-scale = Vector2(22, 28)
-shape = SubResource("RectangleShape2D_wtcfe")
-
-[node name="LSDetect" type="Area2D" parent="BattleManager/Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/LSDetect"]
-modulate = Color(0.477012, 0.344017, 0.326423, 1)
-position = Vector2(-250, 0)
-scale = Vector2(22, 28)
-shape = SubResource("RectangleShape2D_wtcfe")
-
-[node name="Camera2D" type="Camera2D" parent="BattleManager/Player"]
-offset = Vector2(0, -210)
-position_smoothing_enabled = true
-editor_draw_drag_margin = true
-
-[node name="AttackableZone" type="Area2D" parent="BattleManager/Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleManager/Player/AttackableZone"]
-scale = Vector2(9, 28)
-shape = SubResource("RectangleShape2D_rpqi1")
-
-[node name="Sprite2D" type="Sprite2D" parent="BattleManager/Player"]
-self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
-position = Vector2(-250, 56.5)
-scale = Vector2(3.4375, 0.382813)
-texture = ExtResource("3_5s1wt")
-
-[node name="Sprite2D2" type="Sprite2D" parent="BattleManager/Player"]
-self_modulate = Color(0.92549, 0, 0.384314, 0.392157)
-position = Vector2(250, 57)
-scale = Vector2(3.4375, 0.382813)
-texture = ExtResource("3_5s1wt")
 
 [node name="ColorRect" type="ColorRect" parent="BattleManager"]
 process_mode = 3
@@ -85,9 +34,4 @@ pivot_offset = Vector2(48, 27)
 text = "Quit to
 Main Menu"
 
-[connection signal="area_entered" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_entered"]
-[connection signal="area_exited" from="BattleManager/Player/RSDetect" to="BattleManager/Player" method="_on_rs_detect_area_exited"]
-[connection signal="area_entered" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_entered"]
-[connection signal="area_exited" from="BattleManager/Player/LSDetect" to="BattleManager/Player" method="_on_ls_detect_area_exited"]
-[connection signal="area_entered" from="BattleManager/Player/AttackableZone" to="BattleManager/Player" method="_on_attackable_zone_area_entered"]
 [connection signal="pressed" from="BattleManager/ExitToMenu" to="BattleManager" method="_on_exit_to_menu_pressed"]
